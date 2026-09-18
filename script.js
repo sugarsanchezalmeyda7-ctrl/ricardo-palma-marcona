@@ -26,6 +26,7 @@ const nextFlyer = document.querySelector('.flyer-next');
 const flyerCarousel = document.querySelector('.flyer-carousel');
 let currentFlyer = 0;
 let flyerTimer;
+let hoverDirection = 0;
 
 const showFlyer = (index) => {
   currentFlyer = (index + flyers.length) % flyers.length;
@@ -43,7 +44,20 @@ if (flyers.length) {
   nextFlyer.addEventListener('click', () => { showFlyer(currentFlyer + 1); restartFlyerTimer(); });
   flyerDots.forEach((dot) => dot.addEventListener('click', () => { showFlyer(Number(dot.dataset.target)); restartFlyerTimer(); }));
   flyerCarousel.addEventListener('mouseenter', () => window.clearInterval(flyerTimer));
-  flyerCarousel.addEventListener('mouseleave', restartFlyerTimer);
+  flyerCarousel.addEventListener('mousemove', (event) => {
+    const position = (event.clientX - event.currentTarget.getBoundingClientRect().left) / event.currentTarget.offsetWidth;
+    const direction = position < 0.3 ? -1 : position > 0.7 ? 1 : 0;
+
+    if (direction && direction !== hoverDirection) {
+      showFlyer(currentFlyer + direction);
+    }
+    hoverDirection = direction;
+    if (direction) restartFlyerTimer();
+  });
+  flyerCarousel.addEventListener('mouseleave', () => {
+    hoverDirection = 0;
+    restartFlyerTimer();
+  });
   restartFlyerTimer();
 }
 

@@ -33,7 +33,7 @@
         <a href="#actualidad">Actualidad</a>
         <a href="#contacto">Contacto</a>
       </nav>
-      <a class="nav-cta" href="https://www.facebook.com/search/pages?q=Instituci%C3%B3n%20Educativa%20Ricardo%20Palma%20Marcona" target="_blank" rel="noopener">Facebook <i data-lucide="facebook"></i></a>
+      <a class="nav-cta" href="auth/login.php">Acceso usuarios <i data-lucide="user-round"></i></a>
     </div>
   </header>
 
@@ -51,7 +51,7 @@
         </div>
       </div>
       <div class="hero-showcase" aria-label="Flyers destacados">
-        <div class="flyer-carousel">
+        <div class="flyer-carousel" aria-live="polite">
           <article class="flyer active" data-flyer="0">
             <img src="object_remover-1774978494000.jpeg" alt="Insignia oficial de la I.E. Ricardo Palma">
             <div class="flyer-shade"></div><div class="flyer-copy"><span>Identidad · Comunidad · Futuro</span><strong>Orgullo<br>Ricardino</strong></div>
@@ -64,8 +64,20 @@
             <img src="WhatsApp Image 2026-03-12 at 10.40.14 AM.jpeg" alt="Docentes y estudiantes de Inicial en el aula">
             <div class="flyer-shade"></div><div class="flyer-copy"><span>Aprender juntos</span><strong>Crecer<br>en comunidad</strong></div>
           </article>
+          <article class="flyer" data-flyer="3">
+            <img src="WhatsApp Image 2026-09-18 at 4.30.44 PM.jpeg" alt="Estudiantes de Inicial en actividad cultural">
+            <div class="flyer-shade"></div><div class="flyer-copy"><span>Concurso · Inicial</span><strong>Crear<br>en comunidad</strong></div>
+          </article>
+          <article class="flyer" data-flyer="4">
+            <img src="WhatsApp Image 2026-09-18 at 6.33.21 PM.jpeg" alt="Estudiantes de Secundaria presentando un proyecto">
+            <div class="flyer-shade"></div><div class="flyer-copy"><span>Concurso · Secundaria</span><strong>Ideas que<br>transforman</strong></div>
+          </article>
+          <article class="flyer" data-flyer="5">
+            <img src="WhatsApp Image 2026-09-18 at 6.33.25 PM.jpeg" alt="Estudiantes participando en feria de ciencias">
+            <div class="flyer-shade"></div><div class="flyer-copy"><span>Concurso · Ciencia</span><strong>Aprender<br>haciendo</strong></div>
+          </article>
         </div>
-        <div class="flyer-controls"><button class="flyer-arrow flyer-prev" aria-label="Flyer anterior"><i data-lucide="arrow-left"></i></button><div class="flyer-dots"><button class="flyer-dot active" data-target="0" aria-label="Ver flyer 1"></button><button class="flyer-dot" data-target="1" aria-label="Ver flyer 2"></button><button class="flyer-dot" data-target="2" aria-label="Ver flyer 3"></button></div><button class="flyer-arrow flyer-next" aria-label="Siguiente flyer"><i data-lucide="arrow-right"></i></button></div>
+        <div class="flyer-controls"><button class="flyer-arrow flyer-prev" aria-label="Flyer anterior"><i data-lucide="arrow-left"></i></button><div class="flyer-dots"><button class="flyer-dot active" data-target="0" aria-label="Ver flyer 1"></button><button class="flyer-dot" data-target="1" aria-label="Ver flyer 2"></button><button class="flyer-dot" data-target="2" aria-label="Ver flyer 3"></button><button class="flyer-dot" data-target="3" aria-label="Ver flyer 4"></button><button class="flyer-dot" data-target="4" aria-label="Ver flyer 5"></button><button class="flyer-dot" data-target="5" aria-label="Ver flyer 6"></button></div><button class="flyer-arrow flyer-next" aria-label="Siguiente flyer"><i data-lucide="arrow-right"></i></button></div>
       </div>
       <div class="hero-note"><span>01</span><div><strong>Marcona, Ica</strong><small>Un lugar para descubrir tu mejor versión</small></div></div>
       <a class="scroll-hint" href="#nosotros"><span>Desliza para explorar</span><i data-lucide="arrow-down"></i></a>
@@ -86,7 +98,7 @@
 
     <section class="gallery section" id="galeria">
       <div class="container">
-        <div class="section-head gallery-head"><div><p class="eyebrow">Nuestra comunidad</p><h2>Vive el <span>Ricardo Palma.</span></h2></div><div class="gallery-filters" role="group" aria-label="Filtrar galería"><button class="gallery-filter active" data-filter="todos">Todos</button><button class="gallery-filter" data-filter="inicial">Inicial</button><button class="gallery-filter" data-filter="primaria">Primaria</button><button class="gallery-filter" data-filter="secundaria">Secundaria</button><button class="gallery-filter" data-filter="comunidad">Comunidad</button></div></div>
+        <div class="section-head gallery-head"><div><p class="eyebrow">Nuestra comunidad</p><h2>Vive el <span>Ricardo Palma.</span></h2></div><div class="gallery-filters" role="group" aria-label="Filtrar galería"><button class="gallery-filter active" data-filter="todos">Todos</button><button class="gallery-filter" data-filter="inicial">Inicial</button><button class="gallery-filter" data-filter="primaria">Primaria</button><button class="gallery-filter" data-filter="secundaria">Secundaria</button><button class="gallery-filter" data-filter="concurso">Concurso</button><button class="gallery-filter" data-filter="comunidad">Comunidad</button></div></div>
         <div class="gallery-grid">
           <figure class="gallery-card gallery-card-large" data-level="inicial"><img src="WhatsApp Image 2026-03-12 at 10.40.14 AM.jpeg" alt="Estudiantes y docentes de Inicial en el aula"><figcaption><strong>Inicial</strong><span>Primeros aprendizajes</span></figcaption></figure>
           <figure class="gallery-card" data-level="secundaria"><img src="WhatsApp Image 2026-03-12 at 10.40.14 AM (1).jpeg" alt="Estudiantes de Secundaria en actividad escolar"><figcaption><strong>Secundaria</strong><span>Talento y liderazgo</span></figcaption></figure>
@@ -96,6 +108,10 @@
           <figure class="gallery-card" data-level="comunidad"><img src="WhatsApp Image 2026-03-12 at 10.40.16 AM.jpeg" alt="Estudiantes y familias en actividad institucional"><figcaption><strong>Comunidad</strong><span>Juntos avanzamos</span></figcaption></figure>
           <figure class="gallery-card" data-level="secundaria"><img src="WhatsApp Image 2026-03-12 at 10.40.16 AM (1).jpeg" alt="Estudiantes de Secundaria en una actividad"><figcaption><strong>Secundaria</strong><span>Participación y compromiso</span></figcaption></figure>
           <figure class="gallery-card gallery-card-wide" data-level="comunidad"><img src="WhatsApp Image 2026-04-23 at 7.31.16 PM.jpeg" alt="Estudiantes presentando una actividad cultural"><figcaption><strong>Comunidad</strong><span>Identidad y tradición</span></figcaption></figure>
+          <figure class="gallery-card" data-level="concurso"><img src="WhatsApp Image 2026-09-18 at 4.30.44 PM (1).jpeg" alt="Estudiantes de Inicial en concurso cultural"><figcaption><strong>Concurso</strong><span>Inicial · Cultura</span></figcaption></figure>
+          <figure class="gallery-card" data-level="concurso"><img src="WhatsApp Image 2026-09-18 at 4.31.54 PM.jpeg" alt="Estudiantes presentando un proyecto escolar"><figcaption><strong>Concurso</strong><span>Primaria · Creatividad</span></figcaption></figure>
+          <figure class="gallery-card" data-level="concurso"><img src="WhatsApp Image 2026-09-18 at 6.33.24 PM.jpeg" alt="Feria de ciencias de la institución educativa"><figcaption><strong>Concurso</strong><span>Secundaria · Ciencia</span></figcaption></figure>
+          <figure class="gallery-card gallery-card-wide" data-level="concurso"><img src="WhatsApp Image 2026-09-18 at 6.33.28 PM.jpeg" alt="Estudiantes mostrando proyectos en concurso"><figcaption><strong>Concurso</strong><span>Ideas que transforman</span></figcaption></figure>
         </div>
       </div>
     </section>
