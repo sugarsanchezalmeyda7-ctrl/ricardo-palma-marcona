@@ -66,6 +66,7 @@ const galleryGrid = document.querySelector('.gallery-grid');
 const lightbox = document.querySelector('.gallery-lightbox');
 const lightboxImage = document.querySelector('.lightbox-image');
 const lightboxCaption = document.querySelector('.lightbox-caption');
+const cameraRollTrack = document.querySelector('.camera-roll-track');
 let galleryImages = [];
 let currentImageIndex = 0;
 
@@ -101,6 +102,10 @@ const renderGallery = (groups) => {
     });
   });
   galleryGrid.querySelectorAll('.gallery-card-button').forEach((button, index) => button.addEventListener('click', () => openLightbox(index)));
+  if (cameraRollTrack && groups['desfile promociones']) {
+    cameraRollTrack.innerHTML = groups['desfile promociones'].map((image, index) => `<button class="camera-roll-item" type="button" aria-label="Ver fotografía ${index + 1}"><span class="camera-roll-sprocket"></span><img src="${image.src}" alt="${image.name} · Desfile promociones" loading="lazy"><span class="camera-roll-sprocket"></span></button>`).join('');
+    cameraRollTrack.querySelectorAll('.camera-roll-item').forEach((button, index) => button.addEventListener('click', () => openLightbox(galleryImages.findIndex((image) => image.src.endsWith(groups['desfile promociones'][index].src)))));
+  }
 };
 
 if (galleryGrid) {
