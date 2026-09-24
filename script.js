@@ -61,18 +61,55 @@ if (flyers.length) {
   restartFlyerTimer();
 }
 
-const galleryFilters = [...document.querySelectorAll('.gallery-filter')];
-const galleryCards = [...document.querySelectorAll('.gallery-card')];
+const galleryFiltersContainer = document.querySelector('.gallery-filters');
+const galleryGrid = document.querySelector('.gallery-grid');
+const lightbox = document.querySelector('.gallery-lightbox');
+const lightboxImage = document.querySelector('.lightbox-image');
+const lightboxCaption = document.querySelector('.lightbox-caption');
+let galleryImages = [];
+let currentImageIndex = 0;
 
-galleryFilters.forEach((filterButton) => {
-  filterButton.addEventListener('click', () => {
-    const selectedLevel = filterButton.dataset.filter;
-    galleryFilters.forEach((button) => button.classList.toggle('active', button === filterButton));
-    galleryCards.forEach((card) => {
-      const shouldShow = selectedLevel === 'todos' || card.dataset.level === selectedLevel;
-      card.classList.toggle('is-hidden', !shouldShow);
+const openLightbox = (index) => {
+  currentImageIndex = (index + galleryImages.length) % galleryImages.length;
+  const image = galleryImages[currentImageIndex];
+  lightboxImage.src = image.src;
+  lightboxImage.alt = image.alt;
+  lightboxCaption.textContent = image.caption;
+  lightbox.classList.add('is-open');
+  lightbox.setAttribute('aria-hidden', 'false');
+};
+
+const closeLightbox = () => {
+  lightbox.classList.remove('is-open');
+  lightbox.setAttribute('aria-hidden', 'true');
+};
+
+const renderGallery = (groups) => {
+  const entries = Object.entries(groups);
+  galleryFiltersContainer.insertAdjacentHTML('beforeend', entries.map(([groupName]) => `<button class="gallery-filter" data-filter="${groupName}">${groupName}</button>`).join(''));
+  galleryGrid.innerHTML = entries.flatMap(([groupName, images]) => images.map((image) => `<figure class="gallery-card" data-level="${groupName}"><button class="gallery-card-button" type="button" aria-label="Ver ${image.name}"><img src="${image.src}" alt="${image.name} · ${groupName}" loading="lazy"><figcaption><strong>${groupName}</strong><span>${image.name}</span></figcaption></button></figure>`)).join('');
+  galleryImages = [...galleryGrid.querySelectorAll('.gallery-card')].map((card) => ({
+    src: card.querySelector('img').src,
+    alt: card.querySelector('img').alt,
+    caption: `${card.dataset.level} · ${card.querySelector('img').alt.split(' · ')[0]}`,
+  }));
+
+  galleryFiltersContainer.querySelectorAll('.gallery-filter').forEach((filterButton) => {
+    filterButton.addEventListener('click', () => {
+      galleryFiltersContainer.querySelectorAll('.gallery-filter').forEach((button) => button.classList.toggle('active', button === filterButton));
+      galleryGrid.querySelectorAll('.gallery-card').forEach((card) => card.classList.toggle('is-hidden', filterButton.dataset.filter !== 'todos' && card.dataset.level !== filterButton.dataset.filter));
     });
   });
-});
+  galleryGrid.querySelectorAll('.gallery-card-button').forEach((button, index) => button.addEventListener('click', () => openLightbox(index)));
+};
+
+if (galleryGrid) {
+  fetch('gallery.json').then((response) => response.json()).then(renderGallery).catch(() => { galleryGrid.innerHTML = '<p class="gallery-status">No se pudieron cargar las fotografías.</p>'; });
+  document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+  document.querySelector('.lightbox-prev').addEventListener('click', () => openLightbox(currentImageIndex - 1));
+  document.querySelector('.lightbox-next').addEventListener('click', () => openLightbox(currentImageIndex + 1));
+  lightbox.addEventListener('click', (event) => { if (event.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeLightbox(); if (event.key === 'ArrowLeft') openLightbox(currentImageIndex - 1); if (event.key === 'ArrowRight') openLightbox(currentImageIndex + 1); });
+}
 
 lucide.createIcons();
